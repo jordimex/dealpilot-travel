@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { buildMetadata } from "@/lib/seo";
+import { getBaseUrl } from "@/lib/siteUrl";
 
 export const metadata = buildMetadata({
   title: "Home",
@@ -12,23 +13,24 @@ export const metadata = buildMetadata({
 });
 
 export default function HomePage() {
+  const baseUrl = getBaseUrl();
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
         name: siteConfig.siteName,
-        url: siteConfig.siteUrl,
+        url: baseUrl,
         slogan: siteConfig.siteTagline,
         sameAs: Object.values(siteConfig.socialLinks),
       },
       {
         "@type": "WebSite",
         name: siteConfig.siteName,
-        url: siteConfig.siteUrl,
+        url: baseUrl,
         potentialAction: {
           "@type": "SearchAction",
-          target: `${siteConfig.siteUrl}/blog?tag={search_term_string}`,
+          target: `${baseUrl}/blog?tag={search_term_string}`,
           "query-input": "required name=search_term_string",
         },
       },

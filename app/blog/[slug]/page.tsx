@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/config";
+import { getBaseUrl } from "@/lib/siteUrl";
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const canonical = `${siteConfig.siteUrl}/blog/${post.slug}`;
+  const canonical = `${getBaseUrl()}/blog/${post.slug}`;
 
   return {
     title: post.title,
@@ -83,11 +84,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     publisher: {
       "@type": "Organization",
       name: siteConfig.siteName,
-      url: siteConfig.siteUrl,
+      url: getBaseUrl(),
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${siteConfig.siteUrl}/blog/${post.slug}`,
+      "@id": `${getBaseUrl()}/blog/${post.slug}`,
     },
     keywords: post.tags.join(", "),
   };

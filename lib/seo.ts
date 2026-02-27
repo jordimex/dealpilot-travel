@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/config";
+import { getBaseUrl } from "@/lib/siteUrl";
 
 type SeoInput = {
   title: string;
@@ -18,7 +19,7 @@ export function buildMetadata({
   type = "website",
   image = "/og-default.svg",
 }: SeoInput): Metadata {
-  const canonical = `${siteConfig.siteUrl}${path}`;
+  const canonical = `${getBaseUrl()}${path}`;
 
   return {
     title,

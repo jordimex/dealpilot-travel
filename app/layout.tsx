@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/lib/config";
+import { getBaseUrl } from "@/lib/siteUrl";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.siteUrl),
+  metadataBase: new URL(getBaseUrl()),
   title: {
     default: `${siteConfig.siteName} | ${siteConfig.siteTagline}`,
     template: `%s | ${siteConfig.siteName}`,
