@@ -1,9 +1,9 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
 import { getBaseUrl } from "@/lib/siteUrl";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+export const runtime = "edge";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getBaseUrl();
@@ -15,10 +15,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
   ];
 
-  const posts = await getAllPosts();
-  const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+  const blogSlugs = [
+    "airport-vs-city-center-hotels-which-is-better",
+    "avoiding-dynamic-pricing-traps",
+    "best-day-time-to-book-flights-what-matters",
+    "booking-multi-city-trips-cheaper-open-jaw-logic",
+    "build-a-deal-first-itinerary",
+    "hidden-hotel-fees-and-how-to-avoid-them",
+    "how-to-use-price-alerts-properly",
+    "points-basics-without-credit-card-hype",
+    "travel-deals-checklist",
+    "when-to-book-flights-myths-vs-data",
+  ];
+
+  const postEntries: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.75,
   }));
