@@ -12,6 +12,16 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.siteName}`,
   },
   description: siteConfig.siteDescription,
+  robots:
+    process.env.NODE_ENV === "production"
+      ? {
+          index: true,
+          follow: true,
+        }
+      : {
+          index: false,
+          follow: false,
+        },
   openGraph: {
     siteName: siteConfig.siteName,
     type: "website",

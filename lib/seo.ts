@@ -20,6 +20,16 @@ export function buildMetadata({
   image = "/og-default.svg",
 }: SeoInput): Metadata {
   const canonical = `${getBaseUrl()}${path}`;
+  const robots =
+    process.env.NODE_ENV === "production"
+      ? {
+          index: true,
+          follow: true,
+        }
+      : {
+          index: false,
+          follow: false,
+        };
 
   return {
     title,
@@ -27,6 +37,7 @@ export function buildMetadata({
     alternates: {
       canonical,
     },
+    robots,
     keywords,
     openGraph: {
       title,
