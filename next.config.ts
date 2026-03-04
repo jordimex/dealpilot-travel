@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
         source: "/sitemap.xml",
         headers: [
           {
+            key: "Cache-Control",
+            value: "no-store",
+          },
+          {
+            key: "Content-Type",
+            value: "application/xml",
+          },
+          {
             key: "X-Robots-Tag",
             value: "index, follow",
           },
