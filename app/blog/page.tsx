@@ -15,8 +15,8 @@ export default async function BlogIndexPage() {
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-      <h1 className="text-4xl font-bold tracking-tight text-slate-900">Travel Deals Blog</h1>
-      <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+      <h1 className="text-4xl font-bold tracking-tight text-brand-primary">Travel Deals Blog</h1>
+      <p className="mt-4 max-w-3xl text-base leading-7 text-brand-secondary">
         Browse practical, data-aware travel deal tactics. Filter posts by tag to focus on flights, hotels, itinerary planning, and pricing behavior.
       </p>
       <BlogFilter initialPosts={posts} allTags={tags} />

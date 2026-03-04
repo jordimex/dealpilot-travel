@@ -107,23 +107,23 @@ export function ContactForm({ preselectedTier = "" }: { preselectedTier?: string
 
   return (
     <div className="mt-8">
-      <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
+      <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-brand-muted bg-white p-6 sm:p-8">
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="text-sm">
-            <span className="mb-1 block font-semibold text-slate-800">Name</span>
-            <input value={form.name} onChange={(e) => updateField("name", e.target.value)} className="w-full rounded-md border border-slate-300 px-3 py-2" />
+            <span className="mb-1 block font-semibold text-brand-primary">Name</span>
+            <input value={form.name} onChange={(e) => updateField("name", e.target.value)} className="w-full rounded-md border border-brand-muted px-3 py-2" />
             {errors.name && <span className="mt-1 block text-xs text-red-600">{errors.name}</span>}
           </label>
 
           <label className="text-sm">
-            <span className="mb-1 block font-semibold text-slate-800">Email</span>
-            <input type="email" value={form.email} onChange={(e) => updateField("email", e.target.value)} className="w-full rounded-md border border-slate-300 px-3 py-2" />
+            <span className="mb-1 block font-semibold text-brand-primary">Email</span>
+            <input type="email" value={form.email} onChange={(e) => updateField("email", e.target.value)} className="w-full rounded-md border border-brand-muted px-3 py-2" />
             {errors.email && <span className="mt-1 block text-xs text-red-600">{errors.email}</span>}
           </label>
 
           <label className="text-sm sm:col-span-2">
-            <span className="mb-1 block font-semibold text-slate-800">Service tier (optional)</span>
-            <select value={form.tier} onChange={(e) => updateField("tier", e.target.value)} className="w-full rounded-md border border-slate-300 px-3 py-2">
+            <span className="mb-1 block font-semibold text-brand-primary">Service tier (optional)</span>
+            <select value={form.tier} onChange={(e) => updateField("tier", e.target.value)} className="w-full rounded-md border border-brand-muted px-3 py-2">
               <option value="">Select a tier</option>
               {tierOptions.map((option) => (
                 <option key={option.value} value={option.value}>{option.label}</option>
@@ -132,35 +132,35 @@ export function ContactForm({ preselectedTier = "" }: { preselectedTier?: string
           </label>
 
           <label className="text-sm sm:col-span-2">
-            <span className="mb-1 block font-semibold text-slate-800">Destination(s)</span>
-            <input value={form.destinations} onChange={(e) => updateField("destinations", e.target.value)} placeholder="Example: Tokyo + Kyoto" className="w-full rounded-md border border-slate-300 px-3 py-2" />
+            <span className="mb-1 block font-semibold text-brand-primary">Destination(s)</span>
+            <input value={form.destinations} onChange={(e) => updateField("destinations", e.target.value)} placeholder="Example: Tokyo + Kyoto" className="w-full rounded-md border border-brand-muted px-3 py-2" />
             {errors.destinations && <span className="mt-1 block text-xs text-red-600">{errors.destinations}</span>}
           </label>
 
           <label className="text-sm">
-            <span className="mb-1 block font-semibold text-slate-800">Dates</span>
-            <input value={form.dates} onChange={(e) => updateField("dates", e.target.value)} placeholder="Example: Sep 12-22, flexible +/-3 days" className="w-full rounded-md border border-slate-300 px-3 py-2" />
+            <span className="mb-1 block font-semibold text-brand-primary">Dates</span>
+            <input value={form.dates} onChange={(e) => updateField("dates", e.target.value)} placeholder="Example: Sep 12-22, flexible +/-3 days" className="w-full rounded-md border border-brand-muted px-3 py-2" />
             {errors.dates && <span className="mt-1 block text-xs text-red-600">{errors.dates}</span>}
           </label>
 
           <label className="text-sm">
-            <span className="mb-1 block font-semibold text-slate-800">Budget</span>
-            <input value={form.budget} onChange={(e) => updateField("budget", e.target.value)} placeholder="Example: $2,500 total" className="w-full rounded-md border border-slate-300 px-3 py-2" />
+            <span className="mb-1 block font-semibold text-brand-primary">Budget</span>
+            <input value={form.budget} onChange={(e) => updateField("budget", e.target.value)} placeholder="Example: $2,500 total" className="w-full rounded-md border border-brand-muted px-3 py-2" />
             {errors.budget && <span className="mt-1 block text-xs text-red-600">{errors.budget}</span>}
           </label>
 
           <label className="text-sm sm:col-span-2">
-            <span className="mb-1 block font-semibold text-slate-800">Travelers</span>
-            <input value={form.travelers} onChange={(e) => updateField("travelers", e.target.value)} placeholder="Example: 2 adults, 1 child" className="w-full rounded-md border border-slate-300 px-3 py-2" />
+            <span className="mb-1 block font-semibold text-brand-primary">Travelers</span>
+            <input value={form.travelers} onChange={(e) => updateField("travelers", e.target.value)} placeholder="Example: 2 adults, 1 child" className="w-full rounded-md border border-brand-muted px-3 py-2" />
             {errors.travelers && <span className="mt-1 block text-xs text-red-600">{errors.travelers}</span>}
           </label>
         </div>
 
         <fieldset className="mt-6">
-          <legend className="text-sm font-semibold text-slate-800">Priorities</legend>
+          <legend className="text-sm font-semibold text-brand-primary">Priorities</legend>
           <div className="mt-2 grid gap-2 sm:grid-cols-2">
             {priorityOptions.map((option) => (
-              <label key={option} className="flex items-center gap-2 text-sm text-slate-700">
+              <label key={option} className="flex items-center gap-2 text-sm text-brand-secondary">
                 <input type="checkbox" checked={form.priorities.includes(option)} onChange={() => togglePriority(option)} />
                 {option}
               </label>
@@ -169,18 +169,18 @@ export function ContactForm({ preselectedTier = "" }: { preselectedTier?: string
         </fieldset>
 
         <label className="mt-6 block text-sm">
-          <span className="mb-1 block font-semibold text-slate-800">Notes</span>
-          <textarea value={form.notes} onChange={(e) => updateField("notes", e.target.value)} rows={5} className="w-full rounded-md border border-slate-300 px-3 py-2" />
+          <span className="mb-1 block font-semibold text-brand-primary">Notes</span>
+          <textarea value={form.notes} onChange={(e) => updateField("notes", e.target.value)} rows={5} className="w-full rounded-md border border-brand-muted px-3 py-2" />
         </label>
 
-        <button type="submit" className="mt-6 rounded-md bg-sky-700 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-800">Submit request</button>
+        <button type="submit" className="mt-6 rounded-md bg-brand-primary px-5 py-3 text-sm font-semibold text-white hover:bg-brand-secondary">Submit request</button>
       </form>
 
       {submitted && (
-        <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-5">
-          <p className="text-sm font-semibold text-emerald-800">Request captured successfully</p>
-          <p className="mt-2 text-sm text-emerald-900">Copy this summary for your records:</p>
-          <pre className="mt-3 overflow-x-auto rounded-md bg-white p-4 text-xs leading-6 text-slate-700">{summary}</pre>
+        <div className="mt-6 rounded-xl border border-brand-accent bg-brand-bg p-5">
+          <p className="text-sm font-semibold text-brand-primary">Request captured successfully</p>
+          <p className="mt-2 text-sm text-brand-secondary">Copy this summary for your records:</p>
+          <pre className="mt-3 overflow-x-auto rounded-md bg-white p-4 text-xs leading-6 text-brand-secondary">{summary}</pre>
           <button
             type="button"
             onClick={async () => {
@@ -190,7 +190,7 @@ export function ContactForm({ preselectedTier = "" }: { preselectedTier?: string
                 // Clipboard write can fail in some browsers without permissions.
               }
             }}
-            className="mt-3 rounded-md border border-emerald-300 bg-white px-3 py-2 text-xs font-semibold text-emerald-800"
+            className="mt-3 rounded-md border border-brand-muted bg-white px-3 py-2 text-xs font-semibold text-brand-primary hover:bg-brand-bg"
           >
             Copy summary
           </button>

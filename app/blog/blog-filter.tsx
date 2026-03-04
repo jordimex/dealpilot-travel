@@ -35,7 +35,7 @@ export function BlogFilter({ initialPosts, allTags }: BlogFilterProps) {
           type="button"
           onClick={() => setActiveTag("all")}
           className={`rounded-full px-3 py-1 text-xs font-semibold ${
-            activeTag === "all" ? "bg-slate-900 text-white" : "bg-slate-200 text-slate-700"
+            activeTag === "all" ? "bg-brand-primary text-white" : "bg-brand-bg text-brand-secondary"
           }`}
         >
           All tags
@@ -46,7 +46,7 @@ export function BlogFilter({ initialPosts, allTags }: BlogFilterProps) {
             key={tag}
             onClick={() => setActiveTag(tag)}
             className={`rounded-full px-3 py-1 text-xs font-semibold ${
-              activeTag === tag ? "bg-sky-700 text-white" : "bg-sky-100 text-sky-700"
+              activeTag === tag ? "bg-brand-primary text-white" : "bg-brand-bg text-brand-primary"
             }`}
           >
             {tag}
@@ -56,8 +56,8 @@ export function BlogFilter({ initialPosts, allTags }: BlogFilterProps) {
 
       <div className="mt-6 grid gap-5">
         {filteredPosts.map((post) => (
-          <article key={post.slug} className="rounded-xl border border-slate-200 bg-white p-6">
-            <p className="text-xs text-slate-500">
+          <article key={post.slug} className="rounded-xl border border-brand-muted bg-white p-6">
+            <p className="text-xs text-brand-secondary">
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -65,20 +65,20 @@ export function BlogFilter({ initialPosts, allTags }: BlogFilterProps) {
               })}{" "}
               - {post.readingTimeMinutes} min read
             </p>
-            <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-900">
-              <Link href={`/blog/${post.slug}`} className="hover:text-sky-700">
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-brand-primary">
+              <Link href={`/blog/${post.slug}`} className="hover:text-brand-secondary">
                 {post.title}
               </Link>
             </h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">{post.description}</p>
+            <p className="mt-3 text-sm leading-6 text-brand-secondary">{post.description}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {post.tags.map((tag) => (
-                <span key={`${post.slug}-${tag}`} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-600">
+                <span key={`${post.slug}-${tag}`} className="rounded-full bg-brand-bg px-2.5 py-1 text-xs text-brand-secondary">
                   {tag}
                 </span>
               ))}
             </div>
-            <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">By {post.author}</p>
+            <p className="mt-4 text-xs font-medium uppercase tracking-wide text-brand-secondary">By {post.author}</p>
           </article>
         ))}
       </div>

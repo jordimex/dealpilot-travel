@@ -18,8 +18,8 @@ export default async function ContactPage({
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-14 sm:px-6 lg:px-8">
-      <h1 className="text-4xl font-bold tracking-tight text-slate-900">Request a Custom Deal Plan</h1>
-      <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+      <h1 className="text-4xl font-bold tracking-tight text-brand-primary">Request a Custom Deal Plan</h1>
+      <p className="mt-4 max-w-2xl text-base leading-7 text-brand-secondary">
         Share your trip details and priorities. We will use this as your planning brief.
       </p>
       <ContactForm preselectedTier={preselectedTier} />

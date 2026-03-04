@@ -1,7 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-primary: #07332c;
+  --color-brand-secondary: #485b46;
+  --color-brand-muted: #afb7ac;
+  --color-brand-accent: #bca879;
+  --color-brand-bg: #ededed;
+}
+
 :root {
-  --ring: #0284c7;
+  --ring: #07332c;
 }
 
 * {
@@ -39,7 +47,7 @@ a {
 .prose-content ol {
   margin-bottom: 1rem;
   line-height: 1.75;
-  color: #1e293b;
+  color: #485b46;
 }
 
 .prose-content ul,

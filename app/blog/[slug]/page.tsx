@@ -96,10 +96,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <div className="mx-auto w-full max-w-4xl px-4 py-14 sm:px-6 lg:px-8">
       <article>
-        <p className="text-sm font-semibold uppercase tracking-wide text-sky-700">Blog Post</p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight text-slate-900">{post.title}</h1>
-        <p className="mt-3 text-base leading-7 text-slate-600">{post.description}</p>
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <p className="text-sm font-semibold uppercase tracking-wide text-brand-accent">Blog Post</p>
+        <h1 className="mt-3 text-4xl font-bold tracking-tight text-brand-primary">{post.title}</h1>
+        <p className="mt-3 text-base leading-7 text-brand-secondary">{post.description}</p>
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-brand-secondary">
           <span>
             {new Date(post.date).toLocaleDateString("en-US", {
               year: "numeric",
@@ -114,30 +114,30 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <span key={tag} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-600">
+            <span key={tag} className="rounded-full bg-brand-bg px-2.5 py-1 text-xs text-brand-secondary">
               {tag}
             </span>
           ))}
         </div>
 
         <div
-          className="prose-content mt-8 rounded-xl border border-slate-200 bg-white p-6 sm:p-8"
+          className="prose-content mt-8 rounded-xl border border-brand-muted bg-white p-6 sm:p-8"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
       </article>
 
       {relatedPosts.length > 0 && (
         <section className="mt-12">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Related posts</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-brand-primary">Related posts</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {relatedPosts.map((related) => (
-              <article key={related.slug} className="rounded-xl border border-slate-200 bg-white p-5">
+              <article key={related.slug} className="rounded-xl border border-brand-muted bg-white p-5">
                 <h3 className="text-lg font-semibold">
-                  <Link href={`/blog/${related.slug}`} className="hover:text-sky-700">
+                  <Link href={`/blog/${related.slug}`} className="hover:text-brand-secondary">
                     {related.title}
                   </Link>
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">{related.description}</p>
+                <p className="mt-2 text-sm text-brand-secondary">{related.description}</p>
               </article>
             ))}
           </div>
