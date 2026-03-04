@@ -23,6 +23,7 @@ export async function GET() {
   const allPaths = [...STATIC_PATHS, ...blogPaths];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<!-- ROUTE_HANDLER_SITEMAP -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allPaths.map((urlPath) => `  <url><loc>${BASE_URL}${urlPath}</loc></url>`).join("\n")}
 </urlset>`;
