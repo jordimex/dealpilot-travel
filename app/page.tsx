@@ -95,7 +95,7 @@ export default function HomePage() {
           <ul className="mt-4 space-y-3">
             <li>
               <Link href="/blog/travel-deals-checklist" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
-                Travel Deals Checklist
+                The Complete Travel Deals Checklist
               </Link>
             </li>
             <li>
@@ -103,7 +103,7 @@ export default function HomePage() {
                 href="/blog/airport-vs-city-center-hotels-which-is-better"
                 className="text-sm font-semibold text-sky-700 hover:text-sky-800"
               >
-                Airport vs City Center Hotels
+                Airport vs City-Center Hotels: When Each Is the Better Deal
               </Link>
             </li>
             <li>
@@ -112,8 +112,41 @@ export default function HomePage() {
               </Link>
             </li>
             <li>
+              <Link href="/blog/best-day-time-to-book-flights-what-matters" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
+                Best Day and Time to Book Flights: What Matters and What Does Not
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/booking-multi-city-trips-cheaper-open-jaw-logic"
+                className="text-sm font-semibold text-sky-700 hover:text-sky-800"
+              >
+                Booking Multi-City Trips Cheaper: Open-Jaw Logic Explained
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/build-a-deal-first-itinerary" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
+                How to Build a Deal-First Itinerary
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/hidden-hotel-fees-and-how-to-avoid-them" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
+                Hidden Hotel Fees and How to Avoid Them
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/how-to-use-price-alerts-properly" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
+                How to Use Price Alerts Properly
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/points-basics-without-credit-card-hype" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
+                Points Basics Without Credit Card Hype
+              </Link>
+            </li>
+            <li>
               <Link href="/blog/when-to-book-flights-myths-vs-data" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
-                When to Book Flights: Myths vs Data
+                When to Book Flights: Myths vs Data-Driven Rules
               </Link>
             </li>
           </ul>
