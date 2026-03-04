@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
         source: "/robots.txt",
         headers: [
           {
+            key: "Cache-Control",
+            value: "no-store",
+          },
+          {
             key: "X-Robots-Tag",
             value: "index, follow",
           },

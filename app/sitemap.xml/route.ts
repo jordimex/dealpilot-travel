@@ -21,11 +21,12 @@ async function getBlogPaths(): Promise<string[]> {
 export async function GET() {
   const blogPaths = await getBlogPaths();
   const allPaths = [...STATIC_PATHS, ...blogPaths];
+  const absoluteUrls = allPaths.map((urlPath) => (urlPath === "/" ? `${BASE_URL}/` : `${BASE_URL}${urlPath}`));
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <!-- ROUTE_HANDLER_SITEMAP -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allPaths.map((urlPath) => `  <url><loc>${BASE_URL}${urlPath}</loc></url>`).join("\n")}
+${absoluteUrls.map((url) => `  <url><loc>${url}</loc></url>`).join("\n")}
 </urlset>`;
 
   return new Response(xml, {
