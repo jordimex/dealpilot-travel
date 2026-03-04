@@ -5,14 +5,15 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const runtime = "edge";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = getBaseUrl();
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = new URL(getBaseUrl()).toString().replace(/\/$/, "");
+  const lastModified = new Date();
   const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
+    { url: baseUrl, lastModified, changeFrequency: "weekly", priority: 1 },
+    { url: `${baseUrl}/services`, lastModified, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/blog`, lastModified, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/about`, lastModified, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/contact`, lastModified, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const blogSlugs = [
@@ -30,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postEntries: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
     url: `${baseUrl}/blog/${slug}`,
-    lastModified: new Date(),
+    lastModified,
     changeFrequency: "monthly",
     priority: 0.75,
   }));
