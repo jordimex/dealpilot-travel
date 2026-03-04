@@ -89,6 +89,37 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-6xl px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Latest Travel Guides</h2>
+          <ul className="mt-4 space-y-3">
+            <li>
+              <Link href="/blog/travel-deals-checklist" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
+                Travel Deals Checklist
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/blog/airport-vs-city-center-hotels-which-is-better"
+                className="text-sm font-semibold text-sky-700 hover:text-sky-800"
+              >
+                Airport vs City Center Hotels
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/avoiding-dynamic-pricing-traps" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
+                Avoiding Dynamic Pricing Traps
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/when-to-book-flights-myths-vs-data" className="text-sm font-semibold text-sky-700 hover:text-sky-800">
+                When to Book Flights: Myths vs Data
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </section>
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </div>
   );
