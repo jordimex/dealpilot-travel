@@ -3,6 +3,7 @@ import { siteConfig } from "@/lib/config";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/flights", label: "Flights" },
   { href: "/services", label: "Services" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },

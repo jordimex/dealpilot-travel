@@ -17,6 +17,14 @@ npm install
 npm run dev
 npm run build
 npm run lint
+
+## Environment Variables
+
+Create a local `.env.local` using `.env.example` and set:
+
+- `TRAVELPAYOUTS_TOKEN` for server-side Travelpayouts API usage
+- `NEXT_PUBLIC_TRAVELPAYOUTS_MARKER` for affiliate flight-search redirects
+- `NEXT_PUBLIC_TRAVELPAYOUTS_WIDGET_SRC` for the widget script URL copied from your Travelpayouts dashboard
 ```
 
 ## Project Structure

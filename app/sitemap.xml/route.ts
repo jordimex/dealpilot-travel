@@ -6,7 +6,7 @@ const BASE_URL = "https://dealpilot-travel.vercel.app";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const STATIC_PATHS = ["/", "/services", "/blog", "/about", "/contact"];
+const STATIC_PATHS = ["/", "/flights", "/services", "/blog", "/about", "/contact"];
 
 async function getBlogPaths(): Promise<string[]> {
   const blogDir = path.join(process.cwd(), "content", "blog");
