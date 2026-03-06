@@ -25,10 +25,10 @@ export function SiteHeader() {
           ))}
         </nav>
         <Link
-          href="/contact"
+          href="/flights"
           className="rounded-md bg-brand-primary px-4 py-2 text-sm font-semibold text-white hover:bg-brand-secondary"
         >
-          Get a custom deal plan
+          Search Flights
         </Link>
       </div>
     </header>

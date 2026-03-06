@@ -13,11 +13,7 @@ type SearchState = {
   destination: string;
   departDate: string;
   returnDate: string;
-  tripType: "roundtrip" | "oneway";
-  adults: string;
-  children: string;
-  infants: string;
-  cabinClass: "0" | "1";
+  passengers: string;
 };
 
 const initialState: SearchState = {
@@ -25,11 +21,7 @@ const initialState: SearchState = {
   destination: "",
   departDate: "",
   returnDate: "",
-  tripType: "roundtrip",
-  adults: "1",
-  children: "0",
-  infants: "0",
-  cabinClass: "0",
+  passengers: "1",
 };
 
 function normalizeIataCode(value: string): string {
@@ -38,7 +30,7 @@ function normalizeIataCode(value: string): string {
 
 export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) {
   const [form, setForm] = useState<SearchState>(initialState);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState("");
 
   function updateField<Key extends keyof SearchState>(key: Key, value: SearchState[Key]) {
     setForm((current) => ({ ...current, [key]: value }));
@@ -55,13 +47,8 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
       return;
     }
 
-    if (!form.departDate) {
-      setError("Choose a departure date.");
-      return;
-    }
-
-    if (form.tripType === "roundtrip" && !form.returnDate) {
-      setError("Choose a return date or switch to one-way.");
+    if (!form.departDate || !form.returnDate) {
+      setError("Choose both departure and return dates.");
       return;
     }
 
@@ -71,18 +58,12 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
       origin_iata: origin,
       destination_iata: destination,
       depart_date: form.departDate,
-      adults: form.adults,
-      children: form.children,
-      infants: form.infants,
-      trip_class: form.cabinClass,
+      return_date: form.returnDate,
+      adults: form.passengers,
       locale: "en",
       currency: "usd",
-      oneway: form.tripType === "oneway" ? "1" : "0",
+      oneway: "0",
     });
-
-    if (form.tripType === "roundtrip" && form.returnDate) {
-      params.set("return_date", form.returnDate);
-    }
 
     if (affiliateMarker) {
       params.set("marker", affiliateMarker);
@@ -97,16 +78,16 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-accent">Flight Search</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-brand-primary">Search affiliate fares in one step</h2>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-brand-primary">Search cheap flights and send traffic to affiliate booking</h2>
           </div>
           <div className="rounded-full border border-brand-muted bg-brand-bg px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-secondary">
             Powered by Travelpayouts
           </div>
         </div>
 
-        <form className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4" onSubmit={handleSubmit}>
+        <form className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5" onSubmit={handleSubmit}>
           <label className="block">
-            <span className="text-sm font-semibold text-brand-primary">From</span>
+            <span className="text-sm font-semibold text-brand-primary">Origin</span>
             <input
               type="text"
               inputMode="text"
@@ -118,7 +99,7 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
           </label>
 
           <label className="block">
-            <span className="text-sm font-semibold text-brand-primary">To</span>
+            <span className="text-sm font-semibold text-brand-primary">Destination</span>
             <input
               type="text"
               inputMode="text"
@@ -130,7 +111,7 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
           </label>
 
           <label className="block">
-            <span className="text-sm font-semibold text-brand-primary">Departure</span>
+            <span className="text-sm font-semibold text-brand-primary">Departure Date</span>
             <input
               type="date"
               value={form.departDate}
@@ -140,33 +121,20 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
           </label>
 
           <label className="block">
-            <span className="text-sm font-semibold text-brand-primary">Return</span>
+            <span className="text-sm font-semibold text-brand-primary">Return Date</span>
             <input
               type="date"
               value={form.returnDate}
               onChange={(event) => updateField("returnDate", event.target.value)}
-              disabled={form.tripType === "oneway"}
-              className="mt-2 w-full rounded-xl border border-brand-muted bg-brand-bg px-4 py-3 text-sm text-brand-primary outline-none transition disabled:cursor-not-allowed disabled:opacity-60 focus:border-brand-primary"
+              className="mt-2 w-full rounded-xl border border-brand-muted bg-brand-bg px-4 py-3 text-sm text-brand-primary outline-none transition focus:border-brand-primary"
             />
           </label>
 
           <label className="block">
-            <span className="text-sm font-semibold text-brand-primary">Trip Type</span>
+            <span className="text-sm font-semibold text-brand-primary">Passengers</span>
             <select
-              value={form.tripType}
-              onChange={(event) => updateField("tripType", event.target.value as SearchState["tripType"])}
-              className="mt-2 w-full rounded-xl border border-brand-muted bg-brand-bg px-4 py-3 text-sm text-brand-primary outline-none transition focus:border-brand-primary"
-            >
-              <option value="roundtrip">Roundtrip</option>
-              <option value="oneway">One-way</option>
-            </select>
-          </label>
-
-          <label className="block">
-            <span className="text-sm font-semibold text-brand-primary">Adults</span>
-            <select
-              value={form.adults}
-              onChange={(event) => updateField("adults", event.target.value)}
+              value={form.passengers}
+              onChange={(event) => updateField("passengers", event.target.value)}
               className="mt-2 w-full rounded-xl border border-brand-muted bg-brand-bg px-4 py-3 text-sm text-brand-primary outline-none transition focus:border-brand-primary"
             >
               {Array.from({ length: 9 }, (_, index) => String(index + 1)).map((value) => (
@@ -177,49 +145,7 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
             </select>
           </label>
 
-          <label className="block">
-            <span className="text-sm font-semibold text-brand-primary">Children</span>
-            <select
-              value={form.children}
-              onChange={(event) => updateField("children", event.target.value)}
-              className="mt-2 w-full rounded-xl border border-brand-muted bg-brand-bg px-4 py-3 text-sm text-brand-primary outline-none transition focus:border-brand-primary"
-            >
-              {Array.from({ length: 7 }, (_, index) => String(index)).map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="block">
-            <span className="text-sm font-semibold text-brand-primary">Infants</span>
-            <select
-              value={form.infants}
-              onChange={(event) => updateField("infants", event.target.value)}
-              className="mt-2 w-full rounded-xl border border-brand-muted bg-brand-bg px-4 py-3 text-sm text-brand-primary outline-none transition focus:border-brand-primary"
-            >
-              {Array.from({ length: 7 }, (_, index) => String(index)).map((value) => (
-                <option key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="block xl:col-span-2">
-            <span className="text-sm font-semibold text-brand-primary">Cabin</span>
-            <select
-              value={form.cabinClass}
-              onChange={(event) => updateField("cabinClass", event.target.value as SearchState["cabinClass"])}
-              className="mt-2 w-full rounded-xl border border-brand-muted bg-brand-bg px-4 py-3 text-sm text-brand-primary outline-none transition focus:border-brand-primary"
-            >
-              <option value="0">Economy</option>
-              <option value="1">Business</option>
-            </select>
-          </label>
-
-          <div className="md:col-span-2 xl:col-span-4">
+          <div className="md:col-span-2 xl:col-span-5">
             {error ? <p className="mb-4 text-sm font-medium text-red-700">{error}</p> : null}
             <button
               type="submit"
@@ -233,11 +159,9 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
 
       <section className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
         <div className="rounded-[1.5rem] border border-brand-muted bg-white p-6 shadow-sm sm:p-8">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-accent">Widget</p>
-              <h3 className="mt-2 text-2xl font-bold tracking-tight text-brand-primary">Embedded Travelpayouts search tool</h3>
-            </div>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-accent">Affiliate Module</p>
+            <h3 className="mt-2 text-2xl font-bold tracking-tight text-brand-primary">Travelpayouts widget drop zone</h3>
           </div>
 
           {widgetSrc ? (
@@ -246,10 +170,26 @@ export function FlightSearch({ affiliateMarker, widgetSrc }: FlightSearchProps) 
             </div>
           ) : (
             <div className="mt-6 rounded-2xl border border-dashed border-brand-muted bg-brand-bg p-5 text-sm leading-7 text-brand-secondary">
-              Add `NEXT_PUBLIC_TRAVELPAYOUTS_WIDGET_SRC` to load your exact Travelpayouts widget embed code on this page. The
-              search form above already redirects to your affiliate results URL.
+              Add `NEXT_PUBLIC_TRAVELPAYOUTS_WIDGET_SRC` to load your Travelpayouts widget here. This keeps the layout ready for the
+              monetized search component you want to drop in later.
             </div>
           )}
+
+          <div className="mt-6 rounded-2xl border border-brand-muted bg-white p-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-accent">Placeholder Results</p>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {[
+                "Best value fare result",
+                "Lowest nonstop fare result",
+                "Flexible dates fare result",
+                "Sponsored airline or OTA slot",
+              ].map((item) => (
+                <div key={item} className="rounded-xl border border-dashed border-brand-muted bg-brand-bg px-4 py-5 text-sm font-medium text-brand-secondary">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <aside className="rounded-[1.5rem] border border-brand-muted bg-brand-primary p-6 text-white shadow-sm sm:p-8">
