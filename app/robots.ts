@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://dealpilot-travel-git-main-jordimexs-projects.vercel.app/sitemap.xml",
+    sitemap: "https://dealpilot-travel.vercel.app/sitemap.xml",
   };
 }

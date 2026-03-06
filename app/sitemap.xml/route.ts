@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const BASE_URL = "https://dealpilot-travel-git-main-jordimexs-projects.vercel.app";
+const BASE_URL = "https://dealpilot-travel.vercel.app";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

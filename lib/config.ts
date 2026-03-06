@@ -3,7 +3,7 @@ export const siteConfig = {
   siteTagline: "Smarter trips. Better prices.",
   siteDescription:
     "DealPilot Travel helps you find better travel deals worldwide with practical, data-informed tactics and real booking examples.",
-  siteUrl: "https://dealpilot-travel-r48txssnp-jordimexs-projects.vercel.app",
+  siteUrl: "https://dealpilot-travel.vercel.app",
   socialLinks: {
     x: "https://x.com/example",
     instagram: "https://instagram.com/example",
